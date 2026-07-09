@@ -27,9 +27,19 @@ public class DashboardOwner extends javax.swing.JPanel {
                 }
             }
         });
+        btnLaporanPenjualan1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LaporanPenjualanHarianForm lpf = new LaporanPenjualanHarianForm();
+                lpf.setVisible(true);
+                java.awt.Window win = javax.swing.SwingUtilities.getWindowAncestor(DashboardOwner.this);
+                if (win != null) {
+                    win.dispose();
+                }
+            }
+        });
         btnLaporanPenjualan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LaporanPenjualanForm lpf = new LaporanPenjualanForm();
+                LaporanPenjualanBulananForm lpf = new LaporanPenjualanBulananForm();
                 lpf.setVisible(true);
                 java.awt.Window win = javax.swing.SwingUtilities.getWindowAncestor(DashboardOwner.this);
                 if (win != null) {
@@ -61,54 +71,63 @@ public class DashboardOwner extends javax.swing.JPanel {
         btnManajemenProduk = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
         btnLaporanPenjualan = new javax.swing.JButton();
+        btnLaporanPenjualan1 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("OriTeh Sapuro - Owner Dashboard");
 
+        btnManajemenProduk.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnManajemenProduk.setText("Manajemen Produk");
 
         btnLogout.setText("Logout");
 
-        btnLaporanPenjualan.setText("Laporan Penjualan");
+        btnLaporanPenjualan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnLaporanPenjualan.setText("Laporan Penjualan Bulanan");
+
+        btnLaporanPenjualan1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnLaporanPenjualan1.setText("Laporan Penjualan Harian");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(jLabel1)
-                .addContainerGap(51, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnManajemenProduk, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnLaporanPenjualan, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(89, 89, 89))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnLogout)
-                        .addGap(16, 16, 16))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnManajemenProduk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLaporanPenjualan1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLaporanPenjualan, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(286, 286, 286)
+                .addComponent(btnLogout)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(123, 123, 123)
+                .addComponent(jLabel1)
+                .addContainerGap(127, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(29, 29, 29)
                 .addComponent(jLabel1)
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnManajemenProduk, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLaporanPenjualan, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGap(49, 49, 49)
+                .addComponent(btnManajemenProduk, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnLaporanPenjualan1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(btnLaporanPenjualan, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
                 .addComponent(btnLogout)
-                .addGap(18, 18, 18))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLaporanPenjualan;
+    private javax.swing.JButton btnLaporanPenjualan1;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnManajemenProduk;
     private javax.swing.JLabel jLabel1;

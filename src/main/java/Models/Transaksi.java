@@ -1,8 +1,8 @@
 package Models;
 
 public class Transaksi {
-    private String kodeBarang;
-    private String namaBarang;
+    private String kodeProduk;
+    private String namaProduk;
     private double hargaSatuan;
     private int jumlah;
     private double subTotal;
@@ -10,28 +10,28 @@ public class Transaksi {
     public Transaksi() {
     }
 
-    public Transaksi(String kodeBarang, String namaBarang, double hargaSatuan, int jumlah, double subTotal) {
-        this.kodeBarang = kodeBarang;
-        this.namaBarang = namaBarang;
+    public Transaksi(String kodeProduk, String namaProduk, double hargaSatuan, int jumlah, double subTotal) {
+        this.kodeProduk = kodeProduk;
+        this.namaProduk = namaProduk;
         this.hargaSatuan = hargaSatuan;
         this.jumlah = jumlah;
         this.subTotal = subTotal;
     }
 
-    public String getKodeBarang() {
-        return kodeBarang;
+    public String getKodeProduk() {
+        return kodeProduk;
     }
 
-    public void setKodeBarang(String kodeBarang) {
-        this.kodeBarang = kodeBarang;
+    public void setKodeProduk(String kodeProduk) {
+        this.kodeProduk = kodeProduk;
     }
 
-    public String getNamaBarang() {
-        return namaBarang;
+    public String getNamaProduk() {
+        return namaProduk;
     }
 
-    public void setNamaBarang(String namaBarang) {
-        this.namaBarang = namaBarang;
+    public void setNamaProduk(String namaProduk) {
+        this.namaProduk = namaProduk;
     }
 
     public double getHargaSatuan() {

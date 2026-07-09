@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class DetailTransaksi {
     private String noNota;
-    private String kodeBarang;
+    private String kodeProduk;
     private Date tanggal;
     private double bayar;
     private double kembalian;
@@ -12,9 +12,9 @@ public class DetailTransaksi {
     public DetailTransaksi() {
     }
 
-    public DetailTransaksi(String noNota, String kodeBarang, Date tanggal, double bayar, double kembalian) {
+    public DetailTransaksi(String noNota, String kodeProduk, Date tanggal, double bayar, double kembalian) {
         this.noNota = noNota;
-        this.kodeBarang = kodeBarang;
+        this.kodeProduk = kodeProduk;
         this.tanggal = tanggal;
         this.bayar = bayar;
         this.kembalian = kembalian;
@@ -28,12 +28,12 @@ public class DetailTransaksi {
         this.noNota = noNota;
     }
 
-    public String getKodeBarang() {
-        return kodeBarang;
+    public String getKodeProduk() {
+        return kodeProduk;
     }
 
-    public void setKodeBarang(String kodeBarang) {
-        this.kodeBarang = kodeBarang;
+    public void setKodeProduk(String kodeProduk) {
+        this.kodeProduk = kodeProduk;
     }
 
     public Date getTanggal() {

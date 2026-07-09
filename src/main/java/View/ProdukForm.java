@@ -17,6 +17,7 @@ public class ProdukForm extends javax.swing.JFrame {
      */
     public ProdukForm() {
         initComponents();
+        this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         this.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -79,9 +80,9 @@ public class ProdukForm extends javax.swing.JFrame {
         jTable1.setModel(model);
         
         String search = tfSearchBar.getText().trim();
-        String query = "SELECT * FROM produk";
+        String query = "SELECT * FROM produk WHERE is_deleted = 0";
         if (!search.isEmpty()) {
-            query += " WHERE kode_produk LIKE ? OR nama_produk LIKE ?";
+            query += " AND (kode_produk LIKE ? OR nama_produk LIKE ?)";
         }
         
         try (java.sql.Connection conn = Models.Koneksi.getConnection();
@@ -209,7 +210,7 @@ public class ProdukForm extends javax.swing.JFrame {
         int confirm = javax.swing.JOptionPane.showConfirmDialog(this, "Apakah Anda yakin ingin menghapus produk " + kode + "?", "Konfirmasi", javax.swing.JOptionPane.YES_NO_OPTION);
         
         if (confirm == javax.swing.JOptionPane.YES_OPTION) {
-            String query = "DELETE FROM produk WHERE kode_produk = ?";
+            String query = "UPDATE produk SET is_deleted = 1 WHERE kode_produk = ?";
             try (java.sql.Connection conn = Models.Koneksi.getConnection();
                  java.sql.PreparedStatement stmt = conn.prepareStatement(query)) {
                 stmt.setString(1, kode);

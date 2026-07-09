@@ -22,6 +22,7 @@ public class DashboardKasir extends javax.swing.JFrame {
 
     public DashboardKasir() {
         initComponents();
+        this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         
         loadProducts();
@@ -113,7 +114,7 @@ public class DashboardKasir extends javax.swing.JFrame {
     private void loadProducts() {
         cbVarianProduk.removeAllItems();
         produkList.clear();
-        String query = "SELECT * FROM produk";
+        String query = "SELECT * FROM produk WHERE is_deleted = 0";
         try (java.sql.Connection conn = Models.Koneksi.getConnection();
              java.sql.Statement stmt = conn.createStatement();
              java.sql.ResultSet rs = stmt.executeQuery(query)) {
@@ -181,8 +182,8 @@ public class DashboardKasir extends javax.swing.JFrame {
         for (Models.Transaksi t : cart) {
             model.addRow(new Object[]{
                 no++,
-                t.getKodeBarang(),
-                t.getNamaBarang(),
+                t.getKodeProduk(),
+                t.getNamaProduk(),
                 t.getHargaSatuan(),
                 t.getJumlah(),
                 t.getSubTotal()
@@ -234,7 +235,7 @@ public class DashboardKasir extends javax.swing.JFrame {
         
         boolean found = false;
         for (Models.Transaksi t : cart) {
-            if (t.getKodeBarang().equals(p.getKodeProduk())) {
+            if (t.getKodeProduk().equals(p.getKodeProduk())) {
                 t.setJumlah(t.getJumlah() + qty);
                 t.setSubTotal(t.getJumlah() * t.getHargaSatuan());
                 found = true;
@@ -356,12 +357,12 @@ public class DashboardKasir extends javax.swing.JFrame {
                 stmtT.executeUpdate();
             }
             
-            String queryDetail = "INSERT INTO detail_transaksi (no_nota, kode_barang, nama_barang, harga_satuan, jumlah, subtotal) VALUES (?, ?, ?, ?, ?, ?)";
+            String queryDetail = "INSERT INTO detail_transaksi (no_nota, kode_produk, nama_produk, harga_satuan, jumlah, subtotal) VALUES (?, ?, ?, ?, ?, ?)";
             try (java.sql.PreparedStatement stmtD = conn.prepareStatement(queryDetail)) {
                 for (Models.Transaksi item : cart) {
                     stmtD.setString(1, nota);
-                    stmtD.setString(2, item.getKodeBarang());
-                    stmtD.setString(3, item.getNamaBarang());
+                    stmtD.setString(2, item.getKodeProduk());
+                    stmtD.setString(3, item.getNamaProduk());
                     stmtD.setDouble(4, item.getHargaSatuan());
                     stmtD.setInt(5, item.getJumlah());
                     stmtD.setDouble(6, item.getSubTotal());
