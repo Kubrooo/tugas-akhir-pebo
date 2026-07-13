@@ -347,25 +347,21 @@ public class DashboardKasir extends javax.swing.JFrame {
             conn = Models.Koneksi.getConnection();
             conn.setAutoCommit(false);
             
-            String queryTransaksi = "INSERT INTO transaksi (no_nota, bayar, kembalian, total_bayar, id_user) VALUES (?, ?, ?, ?, ?)";
+            String queryTransaksi = "INSERT INTO transaksi (no_nota, total_bayar, id_user) VALUES (?, ?, ?)";
             try (java.sql.PreparedStatement stmtT = conn.prepareStatement(queryTransaksi)) {
                 stmtT.setString(1, nota);
-                stmtT.setDouble(2, bayar);
-                stmtT.setDouble(3, kembalian);
-                stmtT.setDouble(4, total);
-                stmtT.setInt(5, activeUserId);
+                stmtT.setDouble(2, total);
+                stmtT.setInt(3, activeUserId);
                 stmtT.executeUpdate();
             }
             
-            String queryDetail = "INSERT INTO detail_transaksi (no_nota, kode_produk, nama_produk, harga_satuan, jumlah, subtotal) VALUES (?, ?, ?, ?, ?, ?)";
+            String queryDetail = "INSERT INTO detail_transaksi (no_nota, kode_produk, jumlah, subtotal) VALUES (?, ?, ?, ?)";
             try (java.sql.PreparedStatement stmtD = conn.prepareStatement(queryDetail)) {
                 for (Models.Transaksi item : cart) {
                     stmtD.setString(1, nota);
                     stmtD.setString(2, item.getKodeProduk());
-                    stmtD.setString(3, item.getNamaProduk());
-                    stmtD.setDouble(4, item.getHargaSatuan());
-                    stmtD.setInt(5, item.getJumlah());
-                    stmtD.setDouble(6, item.getSubTotal());
+                    stmtD.setInt(3, item.getJumlah());
+                    stmtD.setDouble(4, item.getSubTotal());
                     stmtD.executeUpdate();
                 }
             }

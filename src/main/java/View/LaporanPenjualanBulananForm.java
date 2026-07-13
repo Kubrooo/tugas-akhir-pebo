@@ -64,7 +64,7 @@ public class LaporanPenjualanBulananForm extends javax.swing.JFrame {
     private void loadReports() {
         javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel(
             new Object[][]{},
-            new String[]{"No", "No Nota", "Tanggal", "Total Bayar", "Bayar", "Kembalian"}
+            new String[]{"No", "No Nota", "Tanggal", "Total Bayar"}
         ) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -73,7 +73,7 @@ public class LaporanPenjualanBulananForm extends javax.swing.JFrame {
         };
         jTable1.setModel(model);
         
-        String query = "SELECT no_nota, tanggal, total_bayar, bayar, kembalian " +
+        String query = "SELECT no_nota, tanggal, total_bayar " +
                        "FROM transaksi " +
                        "WHERE MONTH(tanggal) = MONTH(CURDATE()) AND YEAR(tanggal) = YEAR(CURDATE()) " +
                        "ORDER BY tanggal DESC";
@@ -87,9 +87,7 @@ public class LaporanPenjualanBulananForm extends javax.swing.JFrame {
                     no++,
                     rs.getString("no_nota"),
                     rs.getString("tanggal"),
-                    rs.getDouble("total_bayar"),
-                    rs.getDouble("bayar"),
-                    rs.getDouble("kembalian")
+                    rs.getDouble("total_bayar")
                 });
             }
         } catch (java.sql.SQLException ex) {

@@ -64,7 +64,7 @@ public class LaporanPenjualanHarianForm extends javax.swing.JFrame {
     private void loadReports() {
         javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel(
             new Object[][]{},
-            new String[]{"No", "No Nota", "Tanggal", "Kode Produk", "Harga Satuan", "Jumlah", "SubTotal", "Bayar", "Kembalian"}
+            new String[]{"No", "No Nota", "Tanggal", "Kode Produk", "Harga Satuan", "Jumlah", "SubTotal"}
         ) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -73,7 +73,7 @@ public class LaporanPenjualanHarianForm extends javax.swing.JFrame {
         };
         jTable1.setModel(model);
         
-        String query = "SELECT t.no_nota, t.tanggal, d.kode_produk, COALESCE(p.harga_produk, d.harga_satuan) AS harga_satuan, d.jumlah, d.subtotal, t.bayar, t.kembalian " +
+        String query = "SELECT t.no_nota, t.tanggal, d.kode_produk, p.harga_produk AS harga_satuan, d.jumlah, d.subtotal " +
                        "FROM transaksi t " +
                        "JOIN detail_transaksi d ON t.no_nota = d.no_nota " +
                        "LEFT JOIN produk p ON d.kode_produk = p.kode_produk " +
@@ -92,9 +92,7 @@ public class LaporanPenjualanHarianForm extends javax.swing.JFrame {
                     rs.getString("kode_produk"),
                     rs.getDouble("harga_satuan"),
                     rs.getInt("jumlah"),
-                    rs.getDouble("subtotal"),
-                    rs.getDouble("bayar"),
-                    rs.getDouble("kembalian")
+                    rs.getDouble("subtotal")
                 });
             }
         } catch (java.sql.SQLException ex) {

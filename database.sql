@@ -23,8 +23,6 @@ CREATE TABLE IF NOT EXISTS produk (
 CREATE TABLE IF NOT EXISTS transaksi (
     no_nota VARCHAR(50) PRIMARY KEY,
     tanggal TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    bayar DOUBLE NOT NULL,
-    kembalian DOUBLE NOT NULL,
     total_bayar DOUBLE NOT NULL,
     id_user INT,
     FOREIGN KEY (id_user) REFERENCES user(id_user)
@@ -35,8 +33,6 @@ CREATE TABLE IF NOT EXISTS detail_transaksi (
     id_detail INT AUTO_INCREMENT PRIMARY KEY,
     no_nota VARCHAR(50),
     kode_produk VARCHAR(5),
-    nama_produk VARCHAR(100) NOT NULL,
-    harga_satuan DOUBLE NOT NULL,
     jumlah INT NOT NULL,
     subtotal DOUBLE NOT NULL,
     FOREIGN KEY (no_nota) REFERENCES transaksi(no_nota) ON DELETE CASCADE,
